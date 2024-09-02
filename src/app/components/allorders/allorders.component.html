@@ -21,7 +21,7 @@
 
     @for (item of allOrders.slice(-1) ; track $index) {
     <h6 class="text-capitalize"><span class="fw-bold text-capitalize">payment method : </span> {{ item.paymentMethodType}} </h6>
-    <h6 class="text-capitalize"><span class="fw-bold text-capitalize"> Total price : </span> {{ item.totalOrderPrice |currency} </h6>
+    <h6 class="text-capitalize"><span class="fw-bold text-capitalize"> Total price : </span> {{item.totalOrderPrice |currency}} </h6>
     <h6 class="text-capitalize"><span class="fw-bold text-capitalize"> paid : </span> Yes </h6>
     }
 
