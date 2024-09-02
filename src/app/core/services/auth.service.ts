@@ -31,6 +31,7 @@ export class AuthService {
   }
   logOut():void{
     localStorage.removeItem('userToken');
+    localStorage.removeItem('cartOwner');
     this.userData=null;
     this._router.navigate(['/login'])
   }

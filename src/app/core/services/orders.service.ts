@@ -13,7 +13,7 @@ export class OrdersService {
  
 
   checkOut(idCart:string|null,shipDetails:object):Observable<any>{
-    return this._HttpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${idCart}?url=${environment.serverUrl}`,
+    return this._HttpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${idCart}?url=${window.location.origin}`,
       {
         "shippingAddress": shipDetails
      },
