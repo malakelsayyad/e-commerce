@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary p-0  ">
+    <div class="container-fluid mx-5 ">
+        <a class="navbar-brand" routerLink="home">
+            <img src="./assets/images/logo-removebg-preview.png" width="170px" class="me-0" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav text-capitalize">
+
+                <li class="nav-item">
+                    <a class="nav-link mx-1" routerLink="home" routerLinkActive="active-link">home</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link mx-1" routerLink="products" routerLinkActive="active-link">products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-1" routerLink="brands" routerLinkActive="active-link">brands</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-1" routerLink="categories" routerLinkActive="active-link">categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-2 mx-2" routerLink="wishlist" routerLinkActive="active-link">wish list</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ms-auto align-items-center">
+                
+               
+                <li class="nav-item"> 
+                    <a class="nav-link  p-2 mx-2 position-relative" routerLink="cart" routerLinkActive="active-link">
+                        <i class="fas fa-cart-shopping fa-2xl"></i>
+                        <span class=" badge bg-danger position-absolute top-0 end-0">
+                            {{countNumber}}
+                          </span> 
+                    </a>
+                    
+                </li>
+               
+                <li class="nav-item  cursor-pointer logOutBtn">
+                    <a class="nav-link fw-bold" (click)="_AuthService.logOut()" >
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+            
+        </div>
+    </div>
+</nav>

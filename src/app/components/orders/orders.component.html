@@ -1,0 +1,64 @@
+<section class="shadow p-3 my-5">
+    <h1 class="text-main">Shipping details :</h1>
+    <form [formGroup]="orderForm" class=" d-flex flex-column " (ngSubmit)="orderNow()">
+        
+       <div class="my-3">
+            <label for="details" class="my-2" for="details">Details : </label>
+            <textarea [ngClass]="{
+            'is-valid':!orderForm.get('details')?.errors && orderForm.get('details')?.touched,
+            'is-invalid':orderForm.get('details')?.errors && orderForm.get('details')?.touched
+            }"
+             class="form-control" placeholder="Details" formControlName="details"></textarea>
+            @if(orderForm.get('details')?.errors && orderForm.get('details')?.touched ){
+            <div class="alert alert-danger">
+                @if (orderForm.get('details')?.getError('required')) {
+                <p class="m-0">Details are required</p>
+                }
+
+
+            </div>
+            }
+        </div>
+        <div class="my-3">
+            <label class="my-2" for="phone">Phone : </label>
+            <input [ngClass]="{
+                'is-valid':!orderForm.get('phone')?.errors && orderForm.get('phone')?.touched,
+                'is-invalid':orderForm.get('phone')?.errors && orderForm.get('phone')?.touched
+                }" id="phone" type="tel" class="form-control" placeholder="Phone" formControlName="phone">
+            @if(orderForm.get('phone')?.errors && orderForm.get('phone')?.touched ){
+            <div class="alert alert-danger">
+                @if (orderForm.get('phone')?.getError('required')) {
+                <p class="m-0">phone is required</p>
+                }
+                @else if (orderForm.get('phone')?.getError('pattern')) {
+                <p class="m-0">Enter a valid phone</p>
+
+                }
+
+
+            </div>
+            }
+        </div>
+        <div class="my-3">
+            <label class="my-2" for="city">City : </label>
+            <input [ngClass]="{
+                'is-valid':!orderForm.get('city')?.errors && orderForm.get('city')?.touched,
+                'is-invalid':orderForm.get('city')?.errors && orderForm.get('city')?.touched
+                }"  id="city" type="city" class="form-control" placeholder="City" formControlName="city">
+            @if(orderForm.get('city')?.errors && orderForm.get('city')?.touched ){
+            <div class="alert alert-danger">
+                @if (orderForm.get('city')?.getError('required')) {
+                <p class="m-0">city is required</p>
+                }
+            </div>
+            }
+        </div>
+        <button  [disabled]="orderForm.invalid||isLoading" type="submit" class=" btn btn-main w-100 my-2">
+            Order now
+            @if (isLoading) {
+            <span><i class="fas fa-spin fa-spinner"></i></span>
+            }
+        </button>
+    </form>
+  
+</section>

@@ -1,0 +1,17 @@
+<section class=" my-4 ">
+    <h1 class="text-main text-center">All Brands : </h1>
+    <div class="row g-4">
+      @for (brand of brandsDetails; track brand._id) {
+        
+            <div class="  col-md-4">
+                <div class="product p-3 rounded-4 "  >
+                    <div class="text-center">
+                        <img [src]="brand.image" [alt]= "brand.name">
+                    </div>
+                    <h4 class="text-main text-center">{{brand.name}}</h4>
+                </div>
+        
+        </div>
+      }  
+    </div>
+</section>

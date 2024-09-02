@@ -1,0 +1,50 @@
+@if (cartDetails && numOfitems > 0) {
+    <section class=" w-75 mx-auto shadow my-4 p-3 rounded-4">
+
+        <h2 class="text-center mt-2 fw-bold text-main"> Cart </h2>
+        
+
+        @for (cart of cartDetails.products; track cart.product.id) {
+        <div class="row mb-1 border-bottom py-2">
+            <div class="col-md-2">
+                <img [src]="cart.product.imageCover" class="w-100" [alt]="cart.product.title">
+            </div>
+            <div class="col-md-10 pt-5 d-flex align-items-center justify-content-between">
+                <div>
+                    <h3 class="h5">{{cart.product.title | cutText:5}}</h3>
+                    <p class="text-main m-1">Price : {{cart.price | currency}}</p>
+                    <button (click)="removeItem(cart.product._id)" class="btn btn-danger"><i
+                            class="fa-solid fa-trash-can  mx-1"></i>Remove
+                    </button>
+                </div>
+                <div class="d-flex align-items-center gap-1">
+                    <span (click)="updateQuantity( cart.product.id , cart.count+1)" class="text-main cursor-pointer"><i
+                            class="fas fa-circle-plus fa-xl"></i></span>
+                    <span>{{cart.count}}</span>
+                    <span (click)="updateQuantity( cart.product.id , cart.count-1)" class="text-main cursor-pointer"><i
+                            class="fas fa-circle-minus fa-xl"></i></span>
+                </div>
+            </div>
+        </div>
+    
+        }
+        <p class=" h5 text-end mt-3 fw-bold ">Cart items : {{numOfitems}} </p>
+        <p class=" text-end m-2 text-main">Total Price : {{cartDetails.totalCartPrice | currency }} </p>
+     
+        <div class="d-flex  justify-content-end">
+            <button (click)="clearCart()" class="btn btn-danger mx-2">Clear Cart
+                
+            </button>
+            <button [disabled]="numOfitems==0"  [routerLink]="['/orders',cartDetails._id]" routerLinkActive="router-link-active" class="btn btn-main  ">Check out
+                
+            </button>
+        </div>
+    
+    </section>
+}
+@else {
+    <section class="w-75 mx-auto shadow my-4 p-5 rounded-4">
+        <h1 class="text-center text-main fw-bold text-capitalize">Your cart is empty</h1>
+    </section>
+
+}

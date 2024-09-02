@@ -1,0 +1,52 @@
+@if (allOrders) {
+
+<h1  class="text-center my-5 fw-bold text-main text-capitalize" >order details</h1>
+
+<section class=" shadow my-4 p-3">
+
+    <h2 class=" my-3 fw-bold text-main text-capitalize ">Shipping details </h2>
+
+    @for (item of allOrders.slice(-1) ; track $index) {
+    <h6><span class="fw-bold text-capitalize"> shipping address : </span> {{ item.shippingAddress.details}} </h6>
+    <h6><span class="fw-bold text-capitalize"> city : </span> {{ item.shippingAddress.city}} </h6>
+    <h6><span class="fw-bold text-capitalize"> phone: </span> {{ item.shippingAddress.phone}} </h6>
+    }
+
+
+
+</section>
+<section class=" shadow my-4 p-3">
+
+    <h2 class=" my-3 fw-bold text-main text-capitalize ">payment details </h2>
+
+    @for (item of allOrders.slice(-1) ; track $index) {
+    <h6 class="text-capitalize"><span class="fw-bold text-capitalize">payment method : </span> {{ item.paymentMethodType}} </h6>
+    <h6 class="text-capitalize"><span class="fw-bold text-capitalize"> Total price : </span> {{ item.totalOrderPrice}} </h6>
+    <h6 class="text-capitalize"><span class="fw-bold text-capitalize"> paid : </span> Yes </h6>
+    }
+
+
+
+</section>
+<section class="my-5">
+    <div class="row g-3">
+        @for (order of allOrders.slice(-1); track $index) {
+        @for (item of order.cartItems ; track $index) {
+        <div class="col-md-4">
+            <div class="product p-3 rounded-4">
+                <div class="text-center">
+                    <img [src]=" item.product.imageCover " class="w-50" [alt]=" item.product.title ">
+                </div>
+                <div class="text-center mt-2">
+                    <h5 class="text-main">{{ item.product.title |cutText:4 }}</h5>
+                    <h5>Price : {{ item.price | currency }}</h5>
+                    <h5>Quantity: {{ item.count }}</h5>
+                </div>
+            </div>
+        </div>
+        }
+        }
+    </div>
+</section>
+
+}

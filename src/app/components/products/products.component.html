@@ -1,0 +1,42 @@
+<section class="my-4">
+
+    <label class=" mb-2">Search : </label>
+    <input [(ngModel)]="text" type="text" placeholder="Search By Name ..." class="form-control  mb-3">
+
+
+    <div class="row g-4">
+        @for (product of productList |search : text ; track product.id) {
+        <div class="col-md-4">
+            <div class="product p-3 rounded-4 ">
+              <div class="py-2" [routerLink]="['/details',product.id]">
+                <div class="text-center">
+                    <img [src]="product.imageCover" class="w-50" [alt]="product.title">
+                </div>
+                <h4 class="text-main badge text-bg-info C p-2">{{product.category.name}}</h4>
+                <h5>{{product.title|cutText:2}}</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>{{product.price|currency}}</span>
+                    <div>
+
+                        <span class="text-muted">{{product.ratingsAverage}}</span>
+                        @for (num of [1,2,3,4,5].slice(0,product.ratingsAverage) ; track $index) {
+                        <span><i class="fas fa-star rating-color"></i></span>
+                        }
+
+
+                    </div>
+                </div>
+              </div>
+              <span (click)="addToWishlist(product.id)">
+                <i class="fa fa-heart fa-2x cursor-pointer" [ngClass]="{ 'text-danger': isInWishlist.has(product.id), 'text-muted': !isInWishlist.has(product.id) }"></i>
+              </span>
+                <button (click)="addToCart(product.id)" class="btn-main w-100 my-2"> Add to cart <i class="fas fa-cart-shopping mx-2"></i>
+                
+                </button>
+      
+                
+            </div>
+        </div>
+        }
+    </div>
+</section>
