@@ -73,7 +73,7 @@ export class ProductsComponent {
       next: (res) => {
         console.log(res);
         this._ToastrService.success(res.message);
-        this._CartService.cartNumber.next(res.numOfCartItems);
+        this._CartService.cartNumber.set(res.numOfCartItems);
         console.log(this._CartService.cartNumber);
       },
       error: (err) => {

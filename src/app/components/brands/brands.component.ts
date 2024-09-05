@@ -17,6 +17,10 @@ export class BrandsComponent implements OnInit , OnDestroy{
    cancelSub!:Subscription
     brandsDetails:IBrands[] =[];
 
+    flag:boolean=true;
+    modalImg:string=''
+    modalName:string=''
+
    ngOnInit(): void {
        this._BrandsService.getBrands().subscribe({
         next:(res)=>{
@@ -29,6 +33,11 @@ export class BrandsComponent implements OnInit , OnDestroy{
 
        })
    }
+   
+   closeBtn(){
+            this.flag=true
+   }
+
 
    ngOnDestroy(): void {
     this.cancelSub?.unsubscribe();

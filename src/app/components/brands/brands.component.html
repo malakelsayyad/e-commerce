@@ -1,17 +1,31 @@
 <section class=" my-4 ">
     <h1 class="text-main text-center">All Brands : </h1>
     <div class="row g-4">
-      @for (brand of brandsDetails; track brand._id) {
-        
-            <div class="  col-md-4">
-                <div class="product p-3 rounded-4 "  >
-                    <div class="text-center">
-                        <img [src]="brand.image" [alt]= "brand.name">
-                    </div>
-                    <h4 class="text-main text-center">{{brand.name}}</h4>
+        @for (brand of brandsDetails; track brand._id) {
+
+        <div class="  col-md-4">
+            <div class="product p-3 rounded-4 ">
+                <div (click)="flag = false; modalImg = brand.image; modalName = brand.name " class="text-center">
+                    <img [src]="brand.image" [alt]="brand.name">
                 </div>
-        
+                <h4 class="text-main text-center">{{brand.name}}</h4>
+            </div>
+
         </div>
-      }  
+        }
     </div>
 </section>
+<div  [class.d-none]="flag"
+    class="modal  position-fixed start-0 top-0 d-flex w-100 justify-content-center align-items-center bg-black bg-opacity-50 ">
+    <div  class="bg-white p-5 rounded-3 text-center position-relative">
+        <div class="d-flex justify-content-center align-items-center">
+
+            <img #img [src]='modalImg' alt="{{modalName}}" class="w-50 ">
+
+
+            <h2 class="mt-2 text-main">Name : {{modalName}}</h2>
+        </div>
+        <button (click)="closeBtn()" class=" cursor-pointer btn btn-outline-danger m-2"> Close</button>
+
+    </div>
+</div>
